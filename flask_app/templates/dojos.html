@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper" style="display: flex; justify-content: space-around;">
+        <div class="left_side">
+            <h1>New Dojo</h1>
+            <Form action='/create/dojo' method='post'>
+                <label>
+                    Name:
+                    <input style="display: block;" type="text" name="name">
+                </label>
+                <input type='submit' value='Create' style="display: block;">
+            </Form>
+        </div>
+        <div class="right_side">
+            <h1>All Dojos</h1>
+            <div class="dojo_box" style="height: 500px; width: 500px; border: solid red;">
+                {% for one_dojo in all_dojos %}
+                <a href="/dojo/{{one_dojo.id}}" style="display: block; font-size: x-large;">{{one_dojo.name}}</a>
+                {% endfor %}
+            </div>
+            <a href="/ninjas">Add Ninja</a>
+        </div>
+    </div>
+</body>
+</html>
+
+<!-- Format for adding images -->
+<!-- <img src="{{ url_for('static', filename='images/img.png') }}"> -->

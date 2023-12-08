@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users CR</title>
+</head>
+<body>
+    <Div style="display: flex; justify-content: space-between;">
+        <h1>New Ninja</h1> <a href="/dojos">Home</a>
+    </Div>
+    <Div style="margin: 0 auto; width: 500px;" >
+        <Form action='/create/ninja' method='post'>
+            <label>
+                Dojo  
+                <select name="dojo_id" style="display: block;">
+                    
+                    <!-- Need to create an option list for the user to select a restaurant. -->
+                    <!-- Note that we are passing the restaurant id into the value -->
+                    {% for dojo in all_dojos %}
+                    <option name="dojo_id" value={{dojo.id}}>{{dojo.name}}</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <label>
+                First Name:
+                <input style="display: block;" type="text" name="first_name">
+            </label>
+            <label>
+                Last Name:
+                <input style="display: block;" type="text" name="last_name">
+            </label>
+            <label>
+                Age:
+                <input style="display: block;" type="text" name="age">
+            </label>
+            <input type='submit' value='Create' style="display: block;">
+        </Form>
+    </Div>
+</body>
+</html>
