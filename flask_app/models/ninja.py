@@ -9,7 +9,7 @@ from flask import flash, session
 # Remember 'fat models, skinny controllers' more logic should go in here rather than in your controller. Your controller should be able to just call a function from the model for what it needs, ideally.
 
 class Ninja:
-    db = "dojos_and_ninjas_schema" #which database are you using for this project
+    db = "dojos_and_ninjas_schema" #project database
     def __init__(self, data):
         self.id = data['id']
         self.first_name = data['first_name']

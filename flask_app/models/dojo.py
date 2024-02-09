@@ -12,15 +12,14 @@ from flask_app.models import ninja
 # Remember 'fat models, skinny controllers' more logic should go in here rather than in your controller. Your controller should be able to just call a function from the model for what it needs, ideally.
 
 class Dojo:
-    db = "dojos_and_ninjas_schema" #which database are you using for this project
+    db = "dojos_and_ninjas_schema" 
     def __init__(self, data):
         self.id = data['id']
         self.name = data['name']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.ninjas = []
-        # What changes need to be made above for this project?
-        #What needs to be added here for class association?
+
 
     # Create Users Models
     @classmethod
@@ -35,9 +34,9 @@ class Dojo:
         query = "SELECT * FROM dojos;"
         # make sure to call the connectToMySQL function with the schema you are targeting.
         results = connectToMySQL('dojos_and_ninjas_schema').query_db(query)
-        # Create an empty list to append our instances of friends
+        # Create an empty list to append our instances
         dojos = []
-        # Iterate over the db results and create instances of friends with cls.
+        # Iterate over the db results and create instances with cls.
         for dojo in results:
             dojos.append(cls(dojo))
         return dojos
@@ -46,10 +45,10 @@ class Dojo:
     def get_dojo_with_ninjas(cls, id):
         query = "SELECT * FROM dojos LEFT JOIN ninjas ON ninjas.dojo_id = dojos.id WHERE dojos.id = %(id)s;"
         results = connectToMySQL('dojos_and_ninjas_schema').query_db(query, {"id":id} )
-        # results will be a list of topping objects with the burger attached to each row. 
+        # results will be a list with things attached to each row. 
         dojo = cls(results[0])
         for row_from_db in results:
-            # Now we parse the burger data to make instances of burgers and add them into our list.
+            # parse the data to make instances and add them the list.
             ninja_data = {
                 "id": row_from_db["ninjas.id"],
                 "first_name": row_from_db["first_name"],
